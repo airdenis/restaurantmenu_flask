@@ -14,6 +14,50 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
+@app.route('/')
+@app.route('/restaurants/')
+def restaurantsMenu():
+    items = session.query(Restaurant).all()
+    return render_template(
+            'restaurants.html',
+            items=items
+            )
+
+
+@app.route('/restaurants/new/', methods=['GET', 'POST'])
+def newRestaurant():
+    if request.method == 'POST':
+        newRestaurant = Restaurant(name=request.form['name'])
+        session.add(newRestaurant)
+        session.commit()
+        flash("New restaurant has been created!")
+        return redirect(url_for('restaurantsMenu'))
+    else:
+        return render_template('newrestaurant.html')
+
+
+@app.route(
+        '/restaurants/<int:restaurant_id>/edit/',
+        methods=['GET', 'POST']
+        )
+def editRestaurant(restaurant_id):
+    editedRestaurant = session.query(Restaurant).filter_by(
+            id=restaurant_id
+            ).one()
+    if request.method == 'POST':
+        if request.form['name']:
+            editedRestaurant.name = request.form['name']
+        session.add(editedRestaurant)
+        session.commit()
+        flash("Restaurant has been edited!")
+        return redirect(url_for('restaurantsMenu'))
+    else:
+        return render_template(
+                'editrestaurant.html',
+                restaurant_id=restaurant_id,
+                item=editRestaurant)
+
+
 @app.route('/restaurants/<int:restaurant_id>/')
 def restaurantMenu(restaurant_id):
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
