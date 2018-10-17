@@ -1,8 +1,10 @@
 <html>
     <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css')}}">
     </head>
     <body>
+        <div class='container'>
         <h1>{{ restaurant.name }}</h1>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -15,7 +17,7 @@
         {% endwith %}
 
         <a href = '{{url_for('newMenuItem', restaurant_id = restaurant.id) }}'>
-            Create New Item</a>
+            Create New Item</a></br></br>
 
 
         {% for i in items %}
@@ -35,6 +37,8 @@
         </div>
 
         {% endfor %}
+
+        </div>
 
     </body>
 </html>
