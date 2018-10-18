@@ -14,6 +14,12 @@ a {text-decoration: none; color:#FFFFCC; font-size: .75em;}
 
 .pane {position:absolute; left: 25%; border: 2px solid;
     border-radius: 25px; padding: 5px; margin: 5px; border-color: #999999; background-color: #333333; }
+.course{
+    color: #999999;
+}
+.message{
+    color: #cccc00;
+}
 .header         {left:50%; text-align: center;}
 .name {width:50%;display: inline-block; float: left;}
 .description {}
