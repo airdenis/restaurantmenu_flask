@@ -18,5 +18,5 @@
  6. In order to create restaurants database run **python database_setup.py**
  7. To populate database with some restaurants names run **python lotsofmenues.py**
  8. run **python project.py** to launch the app.
- 9. open any browser on your computer **localhost:8080/restaurants** or **localhost:8080**.
+ 9. open any browser on your computer **localhost:5000/restaurants** or **localhost:5000**.
 
